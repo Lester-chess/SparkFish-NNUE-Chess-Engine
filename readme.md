@@ -147,7 +147,7 @@ If you are training directly in your system's global Python environment, please 
 
    * Dataset URL: [official-stockfish/master-binpacks](https://huggingface.co/datasets/official-stockfish/master-binpacks/tree/main)
 
-   * **Training Recommendation**: It is recommended to use a dataset of around **10GB** and better to mix 4-5 binpacks and train for **30-35 epochs**.
+   * **Training Recommendation**: It is recommended to use a dataset of around **30-40GB** and better to mix 4-5 binpacks and train for **70-80 epochs**.Estimated Training time 3-4 Hours.
 
 2. **Run the Training Command**:
    Once the preparation is complete, run the following command in the command line to start training:
@@ -327,7 +327,7 @@ quit                      # 终止并退出引擎
 
    * 数据集地址：[official-stockfish/master-binpacks](https://huggingface.co/datasets/official-stockfish/master-binpacks/tree/main)
 
-   * **训练建议**：推荐使用 **10GB 左右** 的数据集，可多个混合训练 **30 - 35 个轮次（Epochs）**。
+   * **训练建议**：推荐使用 总量**40GB 左右** 的多个数据集混合训练，可多个混合训练 **70-80 个轮次（Epochs）**。预计的训练时间在3-4小时左右。取决于你对网络能力的要求，已及你的配置情况。
 
 2. **执行训练命令**：
    准备工作结束后，在命令行中使用以下命令开始训练：
