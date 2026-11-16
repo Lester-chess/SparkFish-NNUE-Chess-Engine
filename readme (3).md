@@ -1,0 +1,414 @@
+# SparkFish 3.2.1 Manual
+
+
+&lt;div align=&quot;center&quot;&gt;
+  &lt;img src=&quot;./Logo.jpg&quot; alt=&quot;SparkChess Logo&quot; width=&quot;160&quot; style=&quot;border-radius: 20%;&quot;&gt;
+  &lt;h1&gt;SparkFish 3.2.1&lt;/h1&gt;
+  &lt;p&gt;A lite chess engine with NNUE&lt;/p&gt;
+  &lt;p&gt;Supported:Android OEX /Windows&lt;/p&gt;
+  &lt;div align=&quot;center&quot;&gt;
+
+A free and strong UCI chess engine powered by NNUE.Only 6 source code files.Fantastic Performance!
+
+&lt;div align=&quot;center&quot;&gt;
+  &lt;p&gt;
+    &lt;a href=&quot;LICENSE&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/license/Lester-chess/SparkFish-NNUE-Chess-Engine?style=flat-square&amp;color=brightgreen&quot; alt=&quot;License&quot;&gt;&lt;/a&gt;
+    &lt;a href=&quot;https://github.com/Lester-chess/SparkFish-NNUE-Chess-Engine/releases/latest&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/v/release/Lester-chess/SparkFish-NNUE-Chess-Engine?style=flat-square&amp;color=007ec6&amp;label=OFFICIAL%20RELEASE&quot; alt=&quot;Latest Release&quot;&gt;&lt;/a&gt;
+    &lt;a href=&quot;https://github.com/Lester-chess/SparkFish-NNUE-Chess-Engine/commits/main&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/commits-since/Lester-chess/SparkFish-NNUE-Chess-Engine/latest?style=flat-square&amp;color=007ec6&quot; alt=&quot;Commits Since&quot;&gt;&lt;/a&gt;
+    &lt;a href=&quot;https://github.com/Lester-chess/SparkFish-NNUE-Chess-Engine&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/repo-size/Lester-chess/SparkFish-NNUE-Chess-Engine?style=flat-square&amp;color=blue&amp;label=REPO%20SIZE&quot; alt=&quot;Repo Size&quot;&gt;&lt;/a&gt;
+  &lt;/p&gt;
+  &lt;p&gt;
+    &lt;a href=&quot;https://en.wikipedia.org/wiki/C%2B%2B20&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/C%2B%2B-20-00599C?style=flat-square&amp;logo=c%2B%2B&amp;logoColor=white&quot; alt=&quot;C++20&quot;&gt;&lt;/a&gt;
+    &lt;a href=&quot;https://github.com/Lester-chess/SparkFish-NNUE-Chess-Engine&quot;&gt;&lt;img src=&quot;https://www.google.com/search?q=https://img.shields.io/badge/NNUE-HalfKAv2-orange%3Fstyle%3Dflat-square&quot; alt=&quot;NNUE&quot;&gt;&lt;/a&gt;
+    &lt;a href=&quot;https://en.wikipedia.org/wiki/Universal_Chess_Interface&quot;&gt;&lt;img src=&quot;https://www.google.com/search?q=https://img.shields.io/badge/PROTOCOL-UCI-blueviolet%3Fstyle%3Dflat-square&quot; alt=&quot;UCI Protocol&quot;&gt;&lt;/a&gt;
+    &lt;a href=&quot;https://github.com/Lester-chess/SparkFish-NNUE-Chess-Engine/releases&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/platform-Windows-0078D4?style=flat-square&amp;logo=windows&amp;logoColor=white&quot; alt=&quot;Platform - Windows&quot;&gt;&lt;/a&gt;
+    &lt;a href=&quot;https://github.com/Lester-chess/SparkFish-NNUE-Chess-Engine/releases&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/platform-Android-34A853?style=flat-square&amp;logo=android&amp;logoColor=white&quot; alt=&quot;Platform - Android&quot;&gt;&lt;/a&gt;
+  &lt;/p&gt;
+  &lt;p&gt;
+    &lt;img src=&quot;https://img.shields.io/badge/dynamic/json?style=flat-square&amp;color=0080ff&amp;label=Lichess%20Classical&amp;logo=lichess&amp;query=%24.perfs.classical.rating&amp;url=https%3A%2F%2Flichess.org%2Fapi%2Fuser%2FSparkchessengine&quot; alt=&quot;Lichess Classical&quot;&gt;
+    &lt;img src=&quot;https://img.shields.io/badge/dynamic/json?style=flat-square&amp;color=0080ff&amp;label=Lichess%20Rapid&amp;logo=lichess&amp;query=%24.perfs.rapid.rating&amp;url=https%3A%2F%2Flichess.org%2Fapi%2Fuser%2FSparkchessengine&quot; alt=&quot;Lichess Rapid&quot;&gt;
+    &lt;img src=&quot;https://img.shields.io/badge/dynamic/json?style=flat-square&amp;color=0080ff&amp;label=Lichess%20Blitz&amp;logo=lichess&amp;query=%24.perfs.blitz.rating&amp;url=https%3A%2F%2Flichess.org%2Fapi%2Fuser%2FSparkchessengine&quot; alt=&quot;Lichess Blitz&quot;&gt;
+    &lt;img src=&quot;https://img.shields.io/badge/dynamic/json?style=flat-square&amp;color=0080ff&amp;label=Lichess%20Bullet&amp;logo=lichess&amp;query=%24.perfs.bullet.rating&amp;url=https%3A%2F%2Flichess.org%2Fapi%2Fuser%2FSparkchessengine&quot; alt=&quot;Lichess Bullet&quot;&gt;
+  &lt;/p&gt;
+  &lt;p&gt;
+
+&lt;!-- AVX2 指令集加速 --&gt;
+&lt;img src=&quot;https://www.google.com/search?q=https://img.shields.io/badge/SIMD-AVX2-5c2d91%3Fstyle%3Dflat-square&quot; alt=&quot;SIMD AVX2&quot;&gt;
+&lt;a href=&quot;https://github.com/Lester-chess/SparkFish-NNUE-Chess-Engine/releases&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/downloads/Lester-chess/SparkFish-NNUE-Chess-Engine/total?style=flat-square&amp;color=success&amp;label=DOWNLOADS&quot; alt=&quot;Downloads&quot;&gt;&lt;/a&gt;
+&lt;/p&gt;
+&lt;/div&gt;
+
+
+
+
+
+
+◀️Time control:[Lichess Blitz/rapid/bullet](https://lichess.org/@/SparkchessEngine)
+
+✨CCRL [blitz benchmark](https://www.computerchess.org/).
+
+| Rank | Name | CCRL(Estimated) | Elo(Lichess) | + | - | games | score | oppo. | draws |
+| :---: | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| 1 | [SparkFish 3.2.1](https://www.google.com/search?q=https://github.com/Lester-chess/SparkFish/releases/tag/v3.2.1) | 3295| 2717 | 0 | 0 | 0 | 0 | 0 | 0 |
+| 2 | [SparkFish 3.2.0](https://www.google.com/search?q=https://github.com/Lester-chess/SparkFish/releases/tag/v3.2.0) | 3250 | 2701 | 0 | 0 | 0 | 0 | 0 | 0 |
+| 3 | [SparkFish 3.1.0](https://www.google.com/search?q=https://github.com/Lester-chess/SparkFish/releases/tag/v3.1.0) | 3191 | 2690 | 0 | 0 | 0 | 0 | 0 | 0 |
+| 4 | [SparkFish 3.0.0](https://www.google.com/search?q=https://github.com/Lester-chess/SparkFish/releases/tag/v3.0) | 3055 | 2669 | 0 | 0 | 0 | 0 | 0 | 0 |
+| 5 | [SparkFish 1.4.1](https://www.google.com/search?q=https://github.com/Lester-chess/SparkFish/releases/tag/v1.4.1) | 2685 | 2491 | 0 | 0 | 0 | 0 | 0 | 0 |
+| 6 | [SparkFish 1.3.0](https://www.google.com/search?q=https://github.com/Lester-chess/SparkFish/releases/tag/v1.3) | 2585 | 2369 | 0 | 0 | 0 | 0 | 0 | 0 |
+| 7 | [SparkFish 1.0.0](https://www.google.com/search?q=https://github.com/Lester-chess/SparkFish/releases/tag/v1.0) | 2450 | 2350 | 0 | 0 | 0 | 0 | 0 | 0 |
+
+---
+
+## 1. System Requirements & Installation
+
+### 1.1 Requirements
+- **Linux** (Ubuntu 20.04+ recommended) or **Windows** (10/11 x86_64)
+- **Compiler**: GCC / G++ (v9.0+ supporting C++20) or **MSVC**
+- **Dependencies**: OpenMP (for multi-threaded tuning)
+- **Compatibility Layer (Optional)**: Wine (required only if running Windows `.exe` on Linux instances)
+
+### 1.2 Compilation from Source
+
+#### On Linux (Native / AutoDL / VPS)
+
+```bash
+# Clone the repository
+git clone https://github.com/your-repo/sparkchess.git
+cd sparkchess
+
+# Build using G++ with optimization flags
+g++ -O3 -std=c++17 -fopenmp -march=native src/*.cpp -o bin/sparkchess
+
+# Grant executable permissions
+chmod +x bin/sparkchess
+```
+
+#### On Windows (MSVC PGO Build)
+
+Use **Profile-Guided Optimization (PGO)** with **MSVC** (`x64 Native Tools Command Prompt for VS`) to build the optimized AVX2 executable:
+
+```bat
+cl /nologo /std:c++20 /O2 /Oi /GL /arch:AVX2 /DNDEBUG /EHsc /Fe:SparkFish_AVX2_Gen.exe main.cpp /link /LTCG /GENPROFILE /STACK:8388608
+(echo uci & echo isready & echo position startpos & echo go depth 14 & echo position fen r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - 0 1 & echo go depth 13 & echo position fen 8/2p5/3p4/KP5r/1R3p1k/8/4P1P1/8 w - - 0 1 & echo go depth 16 & echo quit) | SparkFish_AVX2_Gen.exe
+cl /nologo /std:c++20 /O2 /Oi /GL /arch:AVX2 /DNDEBUG /EHsc /Fe:SparkFish_AVX2.exe main.cpp /link /LTCG /USEPROFILE:PGD=SparkFish_AVX2_Gen.pgd /STACK:8388608
+```
+
+---
+
+## 2. Basic UCI Usage
+
+SparkFish conforms to the standard UCI protocol. Launch the executable from a terminal or connect it to any chess GUI (Arena, Cutechess, Banksia, Fritz).
+
+### 2.1 Interactive Terminal Mode
+
+Start the engine directly:
+
+```bash
+./sparkchess
+```
+
+Common UCI commands:
+
+```text
+uci                       # Initialize engine and print engine parameters
+isready                   # Check if engine is ready (replies 'readyok')
+setoption name Threads value 8
+setoption name Hash value 256
+position startpos moves e2e4 e7e5
+go depth 15               # Search to depth 15
+go wtime 300000 btime 300000 winc 2000 binc 2000  # Timed search
+quit                      # Terminate the engine
+```
+
+---
+
+## 3. PyTorch NNUE Trainer Manual
+
+This section provides instructions on how to set up and use the NNUE PyTorch trainer for model training and exporting. Depending on your local environment setup preferences, the guide is divided into two scenarios: **Training without a Virtual Environment** and **Training with a Virtual Environment**.
+
+### Scenario 1: Training without a Virtual Environment
+
+If you are training directly in your system's global Python environment, please follow the steps below:
+
+#### 1. Environment Preparation & Dependency Installation
+
+1. **Python Version Requirement**: **Python 3.11** is recommended.
+2. **Install Basic Dependencies**: Open Command Prompt (CMD) in the root directory of the trainer and use `pip` to install the required dependencies listed in `requirements.txt`:
+
+   ```cmd
+   pip install -r requirements.txt
+   ```
+
+3. **Install PyTorch (CUDA Version)**: Based on your current Python version and GPU driver support, visit the [Official PyTorch Website](https://pytorch.org/get-started/locally/) to obtain and run the appropriate installation command for CUDA-accelerated PyTorch.
+4. **Compile the Data Loader**: Navigate to the trainer folder and run the batch script to generate `training_data_loader.dll`:
+
+   ```cmd
+   build-dataloader-windows.bat
+   ```
+
+#### 2. Dataset Preparation & Starting the Training
+
+1. **Obtain the Dataset**:
+   You can download `.binpack` dataset files from the official HuggingFace repository:
+   - Dataset URL: [official-stockfish/master-binpacks](https://huggingface.co/datasets/official-stockfish/master-binpacks/tree/main)
+   - **Training Recommendation**: It is recommended to use a dataset of around **30-40GB**, mix 4-5 binpacks, and train for **70-80 epochs**. Estimated training time is 3-4 hours.
+
+2. **Run the Training Command**:
+   Once preparation is complete, run the following command in the command line to start training:
+
+   ```cmd
+   python train.py "1.binpack" "2.binpack" "3.binpack" "4.binpack" --features="HalfKAv2^" --l1=1024 --max-epochs=x
+   ```
+
+   > **Parameter Description**:
+   > - `"1.binpack" ...`: Replace with the actual file paths and names of your `.binpack` datasets.
+   > - `--max-epochs=x`: Replace `x` with your desired number of training epochs (e.g., `--max-epochs=25`).
+
+#### 3. Exporting (Serializing) the NNUE Model File
+
+After training is complete, convert the generated checkpoint file (`.ckpt`) into the `.nnue` format usable by the engine.
+
+1. **Run the Serialization Command**:
+
+   ```cmd
+   python serialize.py "logs\training_logs\version_x\checkpoints\last.ckpt" "..\engine\custom_1024x2.nnue" --features="HalfKAv2^" --l1=1024 --l2=16 --l3=32
+   ```
+
+   > **Note**: `version_x` in the path (e.g., `version_0`, `version_1`) varies depending on your training runs and parameters. Check the `logs\training_logs` folder first to locate the directory containing the latest checkpoint file.
+
+2. **Deployment & Application**:
+   Ensure that the generated `.nnue` file and the engine binary file (`.exe`) are placed in the **same directory**. The engine will automatically load the network file upon startup.
+
+### Scenario 2: Training with a Virtual Environment
+
+If you prefer to keep your system environment clean by using a virtual environment (such as `venv` or `conda`) for training, follow the workflow below:
+
+#### 1. Navigate to the Directory & Activate the Virtual Environment
+
+1. Open Command Prompt (CMD) and navigate to the `nnue-pytorch` folder:
+
+   ```cmd
+   cd /d "path\to\your\nnue-pytorch"
+   ```
+
+2. **Activate the Virtual Environment** (choose the activation command based on your virtual environment tool):
+   - **If you are using `venv`**:
+
+     ```cmd
+     # Assuming the virtual environment folder is named venv and is in the current directory
+     .\venv\Scripts\activate
+     ```
+
+   - **If you are using `conda`**:
+
+     ```cmd
+     conda activate your_env_name
+     ```
+
+#### 2. Configuration & Training
+
+Once the virtual environment is activated (you will see `(your_env_name)` at the beginning of the command prompt), all subsequent steps are identical to **Scenario 1**:
+
+1. Run `pip install -r requirements.txt` to install dependencies, and install the matching PyTorch CUDA version.
+2. Run `build-dataloader-windows.bat` to generate `training_data_loader.dll`.
+3. Use the `python train.py` command to load the dataset and start training.
+4. Use the `python serialize.py` command to export the `.ckpt` file to a `.nnue` file and place it in the same directory as the engine binary.
+
+---
+
+## 4. Validation & Elo Testing (SPRT)
+
+Validate that the updated weights produce a measurable Elo increase using Sequential Probability Ratio Testing (SPRT):
+
+```bash
+cutechess-cli \
+  -engine name=SparkFish_Tuned cmd=./SparkFish_AVX2.exe \
+  -engine name=SparkFish_Base  cmd=./SparkFish_Base.exe \
+  -each proto=uci tc=10+0.1 \
+  -rounds 2000 \
+  -repeat \
+  -openings file=openings.pgn format=pgn order=random \
+  -sprt elo0=0 elo1=5 alpha=0.05 beta=0.05 \
+  -concurrency 10
+```
+
+---
+
+# SparkFish 3.2 使用手册（中文版）
+
+SparkFish 是一款兼容通用国际象棋接口（UCI）协议的高性能国际象棋引擎，搭载了轻量级的 HalfKAv2 NNUE 评估网络。
+
+---
+
+## 1. 系统要求与安装
+
+### 1.1 系统要求
+- **操作系统**：**Linux**（推荐 Ubuntu 20.04+）或 **Windows**（10/11 x86_64）
+- **编译器**：GCC / G++（支持 C++20 的版本）或 **MSVC**
+- **依赖项**：OpenMP（用于多线程调优）
+- **兼容层（可选）**：Wine（仅在 Linux 实例上运行 Windows `.exe` 文件时需要）
+
+### 1.2 从源码编译
+
+#### 在 Linux 上（原生 / AutoDL / VPS）
+
+```bash
+# 克隆代码仓库
+git clone https://github.com/your-repo/sparkchess.git
+cd sparkchess
+
+# 使用带有优化标志的 G++ 进行编译
+g++ -O3 -std=c++17 -fopenmp -march=native src/*.cpp -o bin/sparkchess
+
+# 赋予可执行权限
+chmod +x bin/sparkchess
+```
+
+#### 在 Windows 上（MSVC PGO 编译）
+
+使用 **MSVC**（`x64 Native Tools Command Prompt for VS`）执行以下三步 **PGO（配置文件引导优化）** 标准编译命令，生成高性能 AVX2 版本：
+
+```bat
+cl /nologo /std:c++20 /O2 /Oi /GL /arch:AVX2 /DNDEBUG /EHsc /Fe:SparkFish_AVX2_Gen.exe main.cpp /link /LTCG /GENPROFILE /STACK:8388608
+(echo uci & echo isready & echo position startpos & echo go depth 14 & echo position fen r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - 0 1 & echo go depth 13 & echo position fen 8/2p5/3p4/KP5r/1R3p1k/8/4P1P1/8 w - - 0 1 & echo go depth 16 & echo quit) | SparkFish_AVX2_Gen.exe
+cl /nologo /std:c++20 /O2 /Oi /GL /arch:AVX2 /DNDEBUG /EHsc /Fe:SparkFish_AVX2.exe main.cpp /link /LTCG /USEPROFILE:PGD=SparkFish_AVX2_Gen.pgd /STACK:8388608
+```
+
+---
+
+## 2. UCI 基础用法
+
+SparkFish 遵循标准的 UCI 协议。您可以直接从终端启动可执行文件，或将其连接到任何国际象棋图形界面（如 Arena、Cutechess、Banksia、Fritz）。
+
+### 2.1 交互式终端模式
+
+直接启动引擎：
+
+```bash
+./sparkchess
+```
+
+常用 UCI 命令：
+
+```text
+uci                       # 初始化引擎并打印引擎参数
+isready                   # 检查引擎是否就绪（返回 'readyok'）
+setoption name Threads value 8
+setoption name Hash value 256
+position startpos moves e2e4 e7e5
+go depth 15               # 搜索至 15 层深度
+go wtime 300000 btime 300000 winc 2000 binc 2000  # 限时搜索
+quit                      # 终止并退出引擎
+```
+
+---
+
+## 3. PyTorch NNUE 训练器手册
+
+本文档旨在介绍如何配置并使用 NNUE PyTorch 训练器进行模型训练与导出。根据您的本地环境配置习惯，分为**不使用虚拟环境**和**使用虚拟环境**两种情况进行说明。
+
+### 情况一：不使用虚拟环境进行训练
+
+如果您直接在系统的全局 Python 环境中进行训练，请按照以下步骤操作：
+
+#### 1. 环境准备与依赖安装
+
+1. **Python 版本要求**：推荐使用 **Python 3.11**。
+2. **安装基础依赖**：在训练器根目录下打开命令提示符（CMD），使用 `pip` 安装 `requirements.txt` 中要求的功能组件：
+
+   ```cmd
+   pip install -r requirements.txt
+   ```
+
+3. **安装 PyTorch (CUDA 版本)**：根据您当前使用的 Python 版本和显卡驱动支持情况，前往 [PyTorch 官网](https://pytorch.org/get-started/locally/) 获取并运行合适的带有 CUDA 加速的 PyTorch 安装命令。
+4. **编译数据加载器**：进入训练器文件夹内，运行批处理文件以生成 `training_data_loader.dll`：
+
+   ```cmd
+   build-dataloader-windows.bat
+   ```
+
+#### 2. 数据集准备与开始训练
+
+1. **获取数据集**：
+   您可以前往 HuggingFace 官方仓库下载 `.binpack` 格式的数据集文件：
+   - 数据集地址：[official-stockfish/master-binpacks](https://huggingface.co/datasets/official-stockfish/master-binpacks/tree/main)
+   - **训练建议**：推荐使用总量 **40GB 左右**的多个数据集混合训练，可多个混合训练 **70-80 个轮次（Epochs）**，预计训练时间在 3-4 小时左右（取决于您对网络能力的要求以及硬件配置）。
+
+2. **执行训练命令**：
+   准备工作结束后，在命令行中使用以下命令开始训练：
+
+   ```cmd
+   python train.py "1.binpack" "2.binpack" "3.binpack" "4.binpack" --features="HalfKAv2^" --l1=1024 --max-epochs=x
+   ```
+
+   > **参数说明**：
+   > - `"1.binpack" ...`：请替换为您实际的数据集文件路径及名称。
+   > - `--max-epochs=x`：将 `x` 替换为您自定义的训练轮次数（例如 `--max-epochs=25`）。
+
+#### 3. 导出（序列化）NNUE 模型文件
+
+训练结束后，需要将生成的检查点文件（`.ckpt`）转换为引擎可用的 `.nnue` 格式。
+
+1. **执行序列化命令**：
+
+   ```cmd
+   python serialize.py "logs\training_logs\version_x\checkpoints\last.ckpt" "..\engine\custom_1024x2.nnue" --features="HalfKAv2^" --l1=1024 --l2=16 --l3=32
+   ```
+
+   > **注意**：路径中的 `version_x`（如 `version_0`、`version_1` 等）根据您的训练次数和参数情况会有所不同。请先在 `logs\training_logs` 文件夹中查看，并定位最新生成的检查点文件所在目录。
+
+2. **部署与应用**：
+   将生成后的 `.nnue` 文件与引擎二进制可执行文件（`.exe`）存放在**同一目录下**，引擎启动时会自动读取该网络文件。
+
+### 情况二：使用虚拟环境进行训练
+
+如果您希望保持系统环境整洁，使用虚拟环境（如 `venv` 或 `conda`）进行训练，请按照以下流程操作：
+
+#### 1. 进入目录并激活虚拟环境
+
+1. 打开命令提示符（CMD），首先进入 `nnue-pytorch` 文件夹：
+
+   ```cmd
+   cd /d "您的nnue-pytorch文件夹路径"
+   ```
+
+2. **激活虚拟环境**（具体命令根据您安装虚拟环境的工具和位置来决定）：
+   - **如果您使用的是 `venv`**：
+
+     ```cmd
+     # 假设虚拟环境文件夹名为 venv 且在当前目录下
+     .\venv\Scripts\activate
+     ```
+
+   - **如果您使用的是 `conda`**：
+
+     ```cmd
+     conda activate 您的虚拟环境名称
+     ```
+
+#### 2. 配置与训练
+
+虚拟环境激活成功后（命令行前端会出现 `(环境名称)` 提示），后续所有步骤与**情况一**完全一致：
+
+1. 运行 `pip install -r requirements.txt` 安装依赖，并安装匹配的 PyTorch CUDA 版本。
+2. 运行 `build-dataloader-windows.bat` 生成 `training_data_loader.dll`。
+3. 使用 `python train.py` 命令加载数据集开始训练。
+4. 使用 `python serialize.py` 命令将 `.ckpt` 导出为 `.nnue` 文件，并与引擎二进制文件放在同一目录下。
+
+---
+
+## 4. 验证与 Elo 测试 (SPRT)
+
+使用序贯概率比检验（SPRT）来验证更新后的权重是否能带来可观的 Elo 等级分提升：
+
+```bash
+cutechess-cli \
+  -engine name=SparkFish_Tuned cmd=./SparkFish_AVX2.exe \
+  -engine name=SparkFish_Base  cmd=./SparkFish_Base.exe \
+  -each proto=uci tc=10+0.1 \
+  -rounds 2000 \
+  -repeat \
+  -openings file=openings.pgn format=pgn order=random \
+  -sprt elo0=0 elo1=5 alpha=0.05 beta=0.05 \
+  -concurrency 10
+```
