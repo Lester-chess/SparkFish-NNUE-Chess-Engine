@@ -81,14 +81,20 @@ g++ -O3 -std=c++17 -fopenmp -march=native src/*.cpp -o bin/sparkchess
 chmod +x bin/sparkchess
 ```
 
-#### On Windows
-- :Use the internal Bat to build the exe version 
+#### On Windows:PGO,use MSVC
+```bash
+1:cl /nologo /std:c++20 /O2 /Oi /GL /arch:AVX2 /DNDEBUG /EHsc /Fe:SparkFish_AVX2_Gen.exe main.cpp /link /LTCG /GENPROFILE /STACK:8388608
+
+2:--SparkFish_AVX2_Gen.exe bench
+--(echo uci & echo isready & echo position startpos & echo go depth 14 & echo position fen r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - 0 1 & echo go depth 13 & echo position fen 8/2p5/3p4/KP5r/1R3p1k/8/4P1P1/8 w - - 0 1 & echo go depth 16 & echo quit) | SparkFish_AVX2_Gen.exe
+
+--3:--cl /nologo /std:c++20 /O2 /Oi /GL /arch:AVX2 /DNDEBUG /EHsc /Fe:SparkFish_AVX2.exe main.cpp /link /LTCG /USEPROFILE:PGD=SparkFish_AVX2_Gen.pgd /STACK:8388608   
 
 
 
 
 ---
-
+```
 ## 2. Basic UCI Usage
 
 SparkChess conforms to the standard UCI protocol. Launch the executable from a terminal or connect it to any chess GUI (Arena, Cutechess, Bankia, Fritz).
