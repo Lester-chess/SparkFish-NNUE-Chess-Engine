@@ -58,6 +58,8 @@ A free and strong UCI chess engine powered by NNUE.Only 6 source code files.Fant
 | 7 | [SparkFish 1.0.0](https://github.com/Lester-chess/SparkFish/releases/tag/v1.0) | 2450 | 2350 | 0 | 0 | 0 | 0 | 0 | 0 |
 ---
 
+<img src="./Updated.jpg" alt="1.0-4.0 update" width="160" style="border-radius: 20%;">
+
 </div>
 </div>
 
