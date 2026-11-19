@@ -58,6 +58,9 @@ A free and strong UCI chess engine powered by NNUE.Only 6 source code files.Fant
 | 7 | [SparkFish 1.0.0](https://github.com/Lester-chess/SparkFish/releases/tag/v1.0) | 2450 | 2350 | 0 | 0 | 0 | 0 | 0 | 0 |
 ---
 
+</div>
+</div>
+
 ## 1. System Requirements & Installation
 
 ### 1.1 Requirements
@@ -71,7 +74,7 @@ A free and strong UCI chess engine powered by NNUE.Only 6 source code files.Fant
 #### On Linux (Native / AutoDL / VPS)
 ```bash
 # Clone the repository
-git clone https://github.com/your-repo/sparkchess.git
+git clone [https://github.com/your-repo/sparkchess.git](https://github.com/your-repo/sparkchess.git)
 cd sparkchess
 
 # Build using G++ with optimization flags
@@ -83,13 +86,15 @@ chmod +x bin/sparkchess
 
 #### On Windows:PGO,use MSVC
 ```bash
-1:cl /nologo /std:c++20 /O2 /Oi /GL /arch:AVX2 /DNDEBUG /EHsc /Fe:SparkFish_AVX2_Gen.exe main.cpp /link /LTCG /GENPROFILE /STACK:8388608
+# 1. Generate PGO instrumented binary
+cl /nologo /std:c++20 /O2 /Oi /GL /arch:AVX2 /DNDEBUG /EHsc /Fe:SparkFish_AVX2_Gen.exe main.cpp /link /LTCG /GENPROFILE /STACK:8388608
 
-2:--SparkFish_AVX2_Gen.exe bench
---(echo uci & echo isready & echo position startpos & echo go depth 14 & echo position fen r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - 0 1 & echo go depth 13 & echo position fen 8/2p5/3p4/KP5r/1R3p1k/8/4P1P1/8 w - - 0 1 & echo go depth 16 & echo quit) | SparkFish_AVX2_Gen.exe
+# 2. Run profiling workload
+SparkFish_AVX2_Gen.exe bench
+(echo uci & echo isready & echo position startpos & echo go depth 14 & echo position fen r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - 0 1 & echo go depth 13 & echo position fen 8/2p5/3p4/KP5r/1R3p1k/8/4P1P1/8 w - - 0 1 & echo go depth 16 & echo quit) | SparkFish_AVX2_Gen.exe
 
---3:--cl /nologo /std:c++20 /O2 /Oi /GL /arch:AVX2 /DNDEBUG /EHsc /Fe:SparkFish_AVX2.exe main.cpp /link /LTCG /USEPROFILE:PGD=SparkFish_AVX2_Gen.pgd /STACK:8388608   
----
+# 3. Build final PGO-optimized binary
+cl /nologo /std:c++20 /O2 /Oi /GL /arch:AVX2 /DNDEBUG /EHsc /Fe:SparkFish_AVX2.exe main.cpp /link /LTCG /USEPROFILE:PGD=SparkFish_AVX2_Gen.pgd /STACK:8388608
 ```
 ## 2. Basic UCI Usage
 
@@ -130,17 +135,17 @@ If you are training directly in your system's global Python environment, please 
 
 2. **Install Basic Dependencies**: Open Command Prompt (CMD) in the root directory of the trainer and use `pip` to install the required dependencies listed in `requirements.txt`:
 
-   ```cmd
-   pip install -r requirements.txt
-   ```
+```cmd
+pip install -r requirements.txt
+```
 
 3. **Install PyTorch (CUDA Version)**: Based on your current Python version and GPU driver support, visit the [Official PyTorch Website](https://pytorch.org/get-started/locally/) to obtain and run the appropriate installation command for CUDA-accelerated PyTorch.
 
 4. **Compile the Data Loader**: Navigate to the trainer folder and run the batch script to generate `training_data_loader.dll`:
 
-   ```cmd
-   build-dataloader-windows.bat
-   ```
+```cmd
+build-dataloader-windows.bat
+```
 
 ### 2. Dataset Preparation & Starting the Training
 
@@ -154,9 +159,9 @@ If you are training directly in your system's global Python environment, please 
 2. **Run the Training Command**:
    Once the preparation is complete, run the following command in the command line to start training:
 
-   ```cmd
-   python train.py "1.binpack" "2.binpack" "3.binpack" "4.binpack" --features="HalfKAv2^" --l1=1024 --max-epochs=x
-   ```
+```cmd
+python train.py "1.binpack" "2.binpack" "3.binpack" "4.binpack" --features="HalfKAv2^" --l1=1024 --max-epochs=x
+```
 
    > **Parameter Description**:
    >
@@ -170,9 +175,9 @@ After training is complete, you need to convert the generated checkpoint file (`
 
 1. **Run the Serialization Command**:
 
-   ```cmd
-   python serialize.py "logs\training_logs\version_x\checkpoints\last.ckpt" "..\engine\custom_512x2.nnue" --features="HalfKAv2^" --l1=1024 --l2=16 --l3=32
-   ```
+```cmd
+python serialize.py "logs\training_logs\version_x\checkpoints\last.ckpt" "..\engine\custom_512x2.nnue" --features="HalfKAv2^" --l1=1024 --l2=16 --l3=32
+```
 
    > **Note**: `version_x` in the path (e.g., `version_0`, `version_1`, etc.) varies depending on your training runs and parameters. Please check the `logs\training_logs` folder first to locate the directory containing the latest checkpoint file.
 
@@ -187,24 +192,24 @@ If you prefer to keep your system environment clean by using a virtual environme
 
 1. Open Command Prompt (CMD) and navigate to the `nnue-pytorch` folder:
 
-   ```cmd
-   cd /d "path\to\your\nnue-pytorch"
-   ```
+```cmd
+cd /d "path\to\your\nnue-pytorch"
+```
 
 2. **Activate the Virtual Environment** (choose the activation command based on the tool and location where you installed your virtual environment):
 
    * **If you are using `venv`**:
 
-     ```cmd
-     # Assuming the virtual environment folder is named venv and is in the current directory
-     .\venv\Scripts\activate
-     ```
+```cmd
+# Assuming the virtual environment folder is named venv and is in the current directory
+.\venv\Scripts\activate
+```
 
    * **If you are using `conda`**:
 
-     ```cmd
-     conda activate your_env_name
-     ```
+```cmd
+conda activate your_env_name
+```
 
 ### 2. Configuration & Training
 
@@ -256,7 +261,7 @@ SparkFish 是一款兼容通用国际象棋接口（UCI）协议的高性能国�
 #### 在 Linux 上（原生 / AutoDL / VPS）
 ```bash
 # 克隆代码仓库
-git clone https://github.com/your-repo/sparkchess.git
+git clone [https://github.com/your-repo/sparkchess.git](https://github.com/your-repo/sparkchess.git)
 cd sparkchess
 
 # 使用带有优化标志的 G++ 进行编译
@@ -310,17 +315,17 @@ quit                      # 终止并退出引擎
 
 2. **安装基础依赖**：在训练器根目录下打开命令提示符（CMD），使用 `pip` 安装 `requirements.txt` 中要求的功能组件：
 
-   ```cmd
-   pip install -r requirements.txt
-   ```
+```cmd
+pip install -r requirements.txt
+```
 
 3. **安装 PyTorch (CUDA 版本)**：根据您当前使用的 Python 版本和显卡驱动支持情况，前往 [PyTorch 官网](https://pytorch.org/get-started/locally/) 获取并运行合适的带有 CUDA 加速的 PyTorch 安装命令。
 
 4. **编译数据加载器**：进入训练器文件夹内，运行批处理文件以生成 `training_data_loader.dll`：
 
-   ```cmd
-   build-dataloader-windows.bat
-   ```
+```cmd
+build-dataloader-windows.bat
+```
 
 ### 2. 数据集准备与开始训练
 
@@ -334,9 +339,9 @@ quit                      # 终止并退出引擎
 2. **执行训练命令**：
    准备工作结束后，在命令行中使用以下命令开始训练：
 
-   ```cmd
-  python train.py "1.binpack" "2.binpack" "3.binpack" "4.binpack" --features="HalfKAv2^" --l1=1024 --max-epochs=x
-   ```
+```cmd
+python train.py "1.binpack" "2.binpack" "3.binpack" "4.binpack" --features="HalfKAv2^" --l1=1024 --max-epochs=x
+```
 
    > **参数说明**：
    >
@@ -350,11 +355,11 @@ quit                      # 终止并退出引擎
 
 1. **执行序列化命令**：
 
-   ```cmd
-   python serialize.py "logs\training_logs\version_x\checkpoints\last.ckpt" "..\engine\custom_512x2.nnue" --features="HalfKAv2^" --l1=1024 --l2=16 --l3=32
-   ```
+```cmd
+python serialize.py "logs\training_logs\version_x\checkpoints\last.ckpt" "..\engine\custom_512x2.nnue" --features="HalfKAv2^" --l1=1024 --l2=16 --l3=32
+```
 
-   > **注意**：路径中的 `version_x`（如 `version_0`、`version_1` 等）根据您的训练次数和参数情况会有所不同。请先在 `logs\training_logs` 文件夹中查看，并定位最新生成的检查点文件所在目录。
+   > **注意**：路径中的 `version_x`（如 `version_0`, `version_1` 等）根据您的训练次数和参数情况会有所不同。请先在 `logs\training_logs` 文件夹中查看，并定位最新生成的检查点文件所在目录。
 
 2. **部署与应用**：
    将生成后的 `.nnue` 文件与引擎二进制可执行文件（`.exe`）存放在**同一目录下**，引擎启动时会自动读取该网络文件。
@@ -367,24 +372,24 @@ quit                      # 终止并退出引擎
 
 1. 打开命令提示符（CMD），首先进入 `nnue-pytorch` 文件夹：
 
-   ```cmd
-   cd /d "您的nnue-pytorch文件夹路径"
-   ```
+```cmd
+cd /d "您的nnue-pytorch文件夹路径"
+```
 
 2. **激活虚拟环境**（具体命令根据您安装虚拟环境的工具和位置来决定）：
 
-   * **如果您使用的是 `venv`**：
+   * **如果您使用的是 `venv`**:
 
-     ```cmd
-     # 假设虚拟环境文件夹名为 venv 且在当前目录下
-     .\venv\Scripts\activate
-     ```
+```cmd
+# 假设虚拟环境文件夹名为 venv 且在当前目录下
+.\venv\Scripts\activate
+```
 
-   * **如果您使用的是 `conda`**：
+   * **如果您使用的是 `conda`**:
 
-     ```cmd
-     conda activate 您的虚拟环境名称
-     ```
+```cmd
+conda activate 您的虚拟环境名称
+```
 
 ### 2. 配置与训练
 
