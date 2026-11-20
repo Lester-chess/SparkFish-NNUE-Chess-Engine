@@ -1,14 +1,15 @@
-# SparkFish 3.2.1 Manual
+# SparkFish 4.0 Manual
 
 
 <div align="center">
   <img src="./Logo.jpg" alt="SparkChess Logo" width="160" style="border-radius: 20%;">
-  <h1>SparkFish 3.2.1</h1>
+  <h1>SparkFish 4.0</h1>
   <p>A lite chess engine with NNUE</p>
   <p>Supported:Android OEX /Windows</p>
   <div align="center">
 
-A free and strong UCI chess engine powered by NNUE.Only 6 source code files.Fantastic Performance!
+SparkFish is a powerful Chess engine using K32H3 NNUE to perform accurate attck and defence.Born to be one of the most strongest engines.
+Also have 3 Style to choose:Aggressive,Normal,Solid.Change it,and Challenge all kinds of opponents.
 
 <div align="center">
   <p>
@@ -88,15 +89,20 @@ chmod +x bin/sparkchess
 
 #### On Windows:PGO,use MSVC
 ```bash
-# 1. Generate PGO instrumented binary
-cl /nologo /std:c++20 /O2 /Oi /GL /arch:AVX2 /DNDEBUG /EHsc /Fe:SparkFish_AVX2_Gen.exe main.cpp /link /LTCG /GENPROFILE /STACK:8388608
+# 1. Compile SYZYGY part
+cl /nologo /I syzygy /std:c11 /experimental:c11atomics /O2 /Oi /GL /arch:AVX2 /DNDEBUG /D_CRT_SECURE_NO_WARNINGS /c syzygy\tbprobe.c
 
-# 2. Run profiling workload
+# 2. Compile PGO -gen version
+cl /nologo /I syzygy /std:c++20 /O2 /Oi /GL /arch:AVX2 /DNDEBUG /EHsc /Fe:SparkFish_AVX2_Gen.exe main.cpp tbprobe.obj nnue_embed.res /link /LTCG /GENPROFILE /STACK:8388608
+
+# 3. Run bench and prepare for final compile
 SparkFish_AVX2_Gen.exe bench
+
 (echo uci & echo isready & echo position startpos & echo go depth 14 & echo position fen r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - 0 1 & echo go depth 13 & echo position fen 8/2p5/3p4/KP5r/1R3p1k/8/4P1P1/8 w - - 0 1 & echo go depth 16 & echo quit) | SparkFish_AVX2_Gen.exe
 
-# 3. Build final PGO-optimized binary
-cl /nologo /std:c++20 /O2 /Oi /GL /arch:AVX2 /DNDEBUG /EHsc /Fe:SparkFish_AVX2.exe main.cpp /link /LTCG /USEPROFILE:PGD=SparkFish_AVX2_Gen.pgd /STACK:8388608
+#4. Compile final version using pgo files
+cl /nologo /I syzygy /std:c++20 /O2 /Oi /GL /arch:AVX2 /DNDEBUG /EHsc /Fe:SparkFish_AVX2.exe main.cpp tbprobe.obj nnue_embed.res /link /LTCG /USEPROFILE /PGD:SparkFish_AVX2_Gen.pgd /STACK:8388608
+
 ```
 ## 2. Basic UCI Usage
 
