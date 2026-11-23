@@ -64,6 +64,18 @@ Also have 3 Style to choose:Aggressive,Normal,Solid.Change it,and Challenge all 
 </div>
 </div>
 
+Estimated ELO of SparkFish 4.1 DEVL1:     1 Thread /128MB hash /Book:8moves_v3.pgn,Time control:40+0.4(s)
+```bash
+# Score of SparkFish 4.1 l1 vs Komodo 14.1: 176 - 106 - 168  [0.578] 450
+# ...      SparkFish 4.1 l1 playing White: 152 - 14 - 59  [0.807] 225
+# ...      SparkFish 4.1 l1 playing Black: 24 - 92 - 109  [0.349] 225
+# ...      White vs Black: 244 - 38 - 168  [0.729] 450
+# Elo difference: 54.5 +/- 25.5, LOS: 100.0 %, DrawRatio: 37.3 %
+SPRT: llr 2.97 (100.8%), lbound -2.94, ubound 2.94 - H1 was accepted
+```
+
+SparkFish is tested to prove that it is a little bit stronger than the Last version of Komodo.The next goal is to catch up with dragon 1.Due to my pc specs,i can not do toomuch game
+
 ## 1. System Requirements & Installation
 
 ### 1.1 Requirements
