@@ -74,7 +74,7 @@ Estimated ELO of SparkFish 4.1 DEVL1:     1 Thread /128MB hash /Book:8moves_v3.p
 SPRT: llr 2.97 (100.8%), lbound -2.94, ubound 2.94 - H1 was accepted
 ```
 
-SparkFish is tested to prove that it is a little bit stronger than the Last version of Komodo.The next goal is to catch up with dragon 1.Due to my pc specs,i can not do toomuch game
+SparkFish is tested to prove that it is a little bit stronger than the Last version of Komodo.The next goal is to catch up with dragon 1.Due to my pc specs,i can not do too much game to get more precise Elo
 
 ## 1. System Requirements & Installation
 
